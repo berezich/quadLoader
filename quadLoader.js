@@ -142,13 +142,13 @@ QuadLoader.prototype = {
             center = map.getGlobalPixelCenter(),
             size = map.container.getSize(),
             mapZoom = map.getZoom(),
-            zoomFactor = Math.pow(2, -mapZoom),
+			zoomFactor = Math.pow(2, -mapZoom),
             pixelCenter = [center[0] * zoomFactor, center[1] * zoomFactor],
             pixelSize = [size[0] * zoomFactor, size[1] * zoomFactor],
             tileSize = 256 * zoomFactor,
         //нам нужны пиксельные границы в пространстве нулевого зума расширенная до углов тайлов
             pixelBounds = [
-                [Math.max(0,pixelCenter[0] - pixelSize[0] * .5), Math.max(pixelCenter[1] - pixelSize[1] * .5)],
+                [Math.max(0,pixelCenter[0] - pixelSize[0] * .5), Math.max(0,pixelCenter[1] - pixelSize[1] * .5)],
                 [Math.min(256,pixelCenter[0] + pixelSize[0] * .5), Math.min(256,pixelCenter[1] + pixelSize[1] * .5)],
             ],
             pixelStart = pixelBounds[0],
@@ -157,7 +157,12 @@ QuadLoader.prototype = {
             quadFactor = Math.pow(2, -quadZoom),
             tiles = [],
             xfill = 1;
-
+		alert("container size = "+size.toString());
+		alert("mapZoom = "+mapZoom.toString());
+		alert("zoomFactor = "+zoomFactor.toString());
+		alert("center = "+center.toString());
+		alert("tileSize = "+tileSize.toString());
+		
 
         //набиваем квады, пока они не выходях за пределы экрана
         for (var x = 0; xfill; x += tileSize) {
